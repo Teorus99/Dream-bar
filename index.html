@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+    <p id="user-info">Загружаем данные...</p>
+    <button onclick="closeApp()">Закрыть</button>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Разворачиваем Web App на весь экран
+
+        let userInfo = document.getElementById("user-info");
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            let user = tg.initDataUnsafe.user;
+            userInfo.innerHTML = `Привет, ${user.first_name}!`;
+        } else {
+            userInfo.innerHTML = "Не удалось загрузить данные пользователя.";
+        }
+
+        function closeApp() {
+            tg.close(); // Закрываем Web App
+        }
+    </script>
+</body>
+</html>
