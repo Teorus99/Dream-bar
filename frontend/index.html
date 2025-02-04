@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Bar Game</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            overflow: hidden;
+        }
+        
+        /* Загрузочный экран */
+        #loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        #loading-logo {
+            width: 150px;
+            height: 150px;
+            animation: fadeIn 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+
+        /* Основной экран */
+        #main-content {
+            display: none;
+            padding: 20px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            background: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Экран загрузки -->
+    <div id="loading-screen">
+        <img id="loading-logo" src="https://your-logo-url.com/logo.png" alt="Loading...">
+    </div>
+
+    <!-- Основной контент -->
+    <div id="main-content">
+        <h1>Привет, <span id="username">гость</span>!</h1>
+        <p>Добро пожаловать в Dream Bar!</p>
+        <button onclick="startGame()">Начать игру</button>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Развернуть WebApp на весь экран
+
+        // Показываем имя пользователя
+        if (tg.initDataUnsafe?.user) {
+            document.getElementById("username").textContent = tg.initDataUnsafe.user.first_name;
+        }
+
+        // Имитируем загрузку (2.5 секунды)
+        setTimeout(() => {
+            document.getElementById("loading-screen").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("loading-screen").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            }, 1000);
+        }, 2500);
+
+        function startGame() {
+            alert("Игра начинается!");
+            tg.close(); // Закрывает WebApp и возвращает в чат
+        }
+    </script>
+</body>
+</html>
+
