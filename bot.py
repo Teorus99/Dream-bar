@@ -2,7 +2,6 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
-
 import os
 
 TOKEN = os.getenv("TOKEN")  # Теперь токен будет браться из переменной окружения
