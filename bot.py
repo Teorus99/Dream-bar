@@ -3,7 +3,9 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 
-TOKEN = "7701089751:AAG3NiabEfhfzOekiHrUX40LLFdJXU5Cjdg"
+import os
+
+TOKEN = os.getenv("TOKEN")  # Теперь токен будет браться из переменной окружения
 WEB_APP_URL = "https://dream-bar.onrender.com"
 
 bot = Bot(token=TOKEN)
