@@ -6,6 +6,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 TOKEN = "7701089751:AAG3NiabEfhfzOekiHrUX40LLFdJXU5Cjdg"
 WEB_APP_URL = "https://dream-bar.onrender.com"
 
+
+
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
